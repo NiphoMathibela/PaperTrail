@@ -1,6 +1,8 @@
-import { SafeAreaView, Text, View } from 'react-native'
+import { FlatList, SafeAreaView, Text, View } from 'react-native'
 import React, { Component } from 'react'
 import UploadCard from '@/components/UploadCard'
+import {data} from '../assets/DemoData';
+import ReceiptCard from '@/components/ReceiptCard';
 
 export class Home extends Component {
   render() {
@@ -23,7 +25,11 @@ export class Home extends Component {
             <Text className='text-2xl font-semibold mx-5'>Receipts</Text>
 
             {/* Receipt Boxes */}
-            <UploadCard/>
+            <FlatList
+            horizontal={true}
+            data={data}
+            renderItem={({ item }) => <ReceiptCard amount={item.amount} location={item.shop} date={item.date} />}
+            />
         </View>
     )
   }
